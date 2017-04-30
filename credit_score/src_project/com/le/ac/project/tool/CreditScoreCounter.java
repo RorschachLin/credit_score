@@ -151,7 +151,7 @@ public class CreditScoreCounter {
 	 */
 	public Integer employmentTimeScore() {
 		Integer score = null;
-		if (this.employmentTime == null) {
+		if (this.employmentTime == null || this.employmentTime.equals("null") || this.employmentTime.equals("")) {
 			return score = 0;
 		}
 		Double et = Double.parseDouble(employmentTime);

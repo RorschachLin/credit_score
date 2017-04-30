@@ -17,7 +17,7 @@
 	<frameset cols="200,*" frameborder="0" border="0" framespacing="0">
 		<frame name="menu" src="<%=path %>/left_panel" marginheight="0"
 			marginwidth="0" scrolling="auto" noresize>
-		<frame name="content" src="<%=path %>/user/bank_content" marginheight="0"
+		<frame name="content" src="<%=path %>/lender/bank_content" marginheight="0"
 			marginwidth="0" scrolling="auto" noresize>
 
 		

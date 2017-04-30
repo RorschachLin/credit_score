@@ -128,6 +128,8 @@ public interface UserService {
 	
 	public CreditReport getReportById(Integer reportId);
 	
+	public List getAllFicoReports();
+	
 	public CreditReportMl getMlReportById(Integer mlReportId);
 	
 	public List getMlReportsByCust(Customer customer);

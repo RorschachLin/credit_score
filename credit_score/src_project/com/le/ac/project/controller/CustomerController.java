@@ -158,7 +158,7 @@ public class CustomerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return "customer_management/credit_score";
 	}
 
@@ -191,22 +191,22 @@ public class CustomerController {
 		}
 		request.setAttribute("creditReportList", reportList);
 		request.setAttribute("mlReportList", mlReportList);
-		String reportId = request.getParameter("report_id");
-		String mlReportId = request.getParameter("ml_report_id");
+		Integer reportId = (Integer)request.getAttribute("report_id");
+		Integer mlReportId = (Integer)request.getAttribute("ml_report_id");
 		CreditReport cr = new CreditReport();
 		CreditReportMl mr = new CreditReportMl();
 		if (reportId == null || reportId.equals("")) {
 			cr = (CreditReport) reportList.get(0);
 			request.setAttribute("report_id", cr.getReportId());
 		} else {
-			cr = userService.getReportById(Integer.parseInt(reportId));
+			cr = userService.getReportById(reportId);
 			request.setAttribute("report_id", reportId);
 		}
 		if (mlReportId == null || mlReportId.equals("")) {
 			mr = (CreditReportMl) mlReportList.get(0);
 			request.setAttribute("ml_report_id", mr.getMlReportId());
 		} else {
-			mr = userService.getMlReportById(Integer.parseInt(mlReportId));
+			mr = userService.getMlReportById(mlReportId);
 			request.setAttribute("ml_report_id", mlReportId);
 		}
 
@@ -420,12 +420,21 @@ public class CustomerController {
 		CreditReport cr = new CreditReport();
 		if (reportId != null && !reportId.equals("")) {
 			cr = userService.getReportById(Integer.parseInt(reportId));
+		}else {
+			String error = "report not found";
+			request.setAttribute("error", error);
+			return "error";
 		}
 		String employmentStatus = cr.getEmploymentStatus();
-		String employmentTime = String.valueOf(cr.getEmploymentTime());
+		String employmentTime = null;
+		Integer etime = cr.getEmploymentTime();
+		if (cr.getEmploymentTime() != null) {
+			employmentTime = String.valueOf(cr.getEmploymentTime());
+		}
 		String residentialStatus = cr.getResidentialStatus();
 		String currency = cr.getCurrency();
-		String requestedLoan = String.valueOf(cr.getLoanAmount());
+		//change the loan amount 
+		String requestedLoan = loanAmount;
 		String income = String.valueOf(cr.getAnnualIncomes());
 		String isHomeOwner = String.valueOf(cr.getIsHomeOwner());
 		String mortgage = String.valueOf(cr.getMortgage());
@@ -476,12 +485,20 @@ public class CustomerController {
 		if (employmentTime != null) {
 			creditReport.setEmploymentTime(Integer.parseInt(employmentTime));
 		}
+		
 		creditReport.setResidentialStatus(residentialStatus);
 		creditReport.setCurrency(currency);
-		creditReport.setLoanAmount(Integer.parseInt(requestedLoan));
+		try {
+			creditReport.setLoanAmount(Integer.parseInt(requestedLoan));
+		} catch (NumberFormatException e) {
+			String error = "Data format is not valid. Please enter the data in a correct format";
+			request.setAttribute("error", error);
+			return "error";
+		}
+		
 		creditReport.setAnnualIncomes(Integer.parseInt(income));
 		creditReport.setIsHomeOwner(Integer.parseInt(isHomeOwner));
-		if (mortgage != null) {
+		if (mortgage != null && !mortgage.equals("null")) {
 			creditReport.setMortgage(Integer.parseInt(mortgage));
 		}
 		creditReport.setCreditCardAmount(Integer.parseInt(cardAmount));
@@ -507,6 +524,9 @@ public class CustomerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		CreditReport newFReport = userService.getLatestReport(customer);
+		Integer newId = newFReport.getReportId();
+		request.setAttribute("report_id", newId);
 		return creditReport(request);
 	}
 

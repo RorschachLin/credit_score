@@ -340,6 +340,16 @@ public class UserServiceImpl<T> extends HibernateDao<T> implements UserService {
 		}
 		return reportList;
 	}
+	
+	@Override
+	public List getAllFicoReports() {
+		String hql = "from CreditReport cr where cr.isDelete = 0";
+		List reportList = super.find(hql);
+		if (reportList.isEmpty()) {
+			return null;
+		}
+		return reportList;
+	}
 
 	@Override
 	public List getMlReportsByCust(Customer customer) {
@@ -411,5 +421,7 @@ public class UserServiceImpl<T> extends HibernateDao<T> implements UserService {
 		}
 		return ficoReportList;
 	}
+
+	
 
 }

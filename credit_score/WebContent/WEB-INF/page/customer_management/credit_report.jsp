@@ -150,7 +150,7 @@
 		<!-- end widget grid -->
 	<!----------------------------------- end table 1 ------------------------>
 	<div>
-		<p>Probability is too low? Try enter another credit amount and see what you can get</p>
+		<p>Probability is too low? Try enter another loan amount and see what you can get</p>
 
 	</div>
 
@@ -283,7 +283,24 @@
 		</section>
 		<!-- end widget grid -->
 	<!----------------------------------- end table 2 ------------------------>
-	
+	<div>
+		<p>Probability is too low? Try enter another loan amount and see what you can get</p>
+
+	</div>
+
+	<form action="<%=path %>/customer/other_loan_amount_ml">
+		<div class="col-xs-2"><!-- change the input group size -->
+			<div class="input-group">
+				<input class="form-control" placeholder="Another loan amount" type="number" name="amount_loan" style="width: 300px;" /> 
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</span>
+			</div>
+			<!-- /input-group -->
+		</div>
+		<input type="hidden" name="report_id" value="${report_id}">
+		<input type="hidden" name="ml_report_id" value="${ml_report_id}">
+	</form>
 </c:if>
 </div>
 
