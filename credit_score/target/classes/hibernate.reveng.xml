@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="credit_score" match-name=".*"/>
+  <table-filter match-catalog="credit_score" match-name="address"/>
+  <table-filter match-catalog="credit_score" match-name="credit_report"/>
+  <table-filter match-catalog="credit_score" match-name="credit_report_ml"/>
+  <table-filter match-catalog="credit_score" match-name="customer"/>
+  <table-filter match-catalog="credit_score" match-name="customer_lender"/>
+  <table-filter match-catalog="credit_score" match-name="lender"/>
+  <table-filter match-catalog="credit_score" match-name="privilege"/>
+  <table-filter match-catalog="credit_score" match-name="report_suggestion"/>
+  <table-filter match-catalog="credit_score" match-name="role_privilege"/>
+  <table-filter match-catalog="credit_score" match-name="suggestion"/>
+</hibernate-reverse-engineering>

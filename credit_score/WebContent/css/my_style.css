@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+/* ------------- set center of table --------------- */
+.center {
+    text-align: center;
+    vertical-align: middle;
+}
+td, th {
+    padding: 5px;   
+}
+tr {
+    height: 25px;   
+}
+
+/* no padding */
+.nopadding {
+   padding: 0;
+   /* margin: 0; */
+}
+
+
+
