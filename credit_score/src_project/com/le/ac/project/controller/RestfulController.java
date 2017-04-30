@@ -29,7 +29,13 @@ public class RestfulController {
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
-
+	
+	/**
+	 * testing
+	 * @param name
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name,
 			HttpServletRequest request) {
